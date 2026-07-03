@@ -99,7 +99,7 @@ do
   vim.g.maplocalleader = ' '
 
   -- Set to true if you have a Nerd Font installed and selected in the terminal
-  vim.g.have_nerd_font = false
+  vim.g.have_nerd_font = true
 
   -- [[ Setting options ]]
   --  See `:help vim.o`
@@ -161,9 +161,10 @@ do
   -- Preview substitutions live, as you type!
   vim.o.inccommand = 'split'
 
-  -- Show which line your cursor is on
+  -- Show which line and column your cursor is on
   vim.o.cursorline = true
-
+  vim.o.cursorcolumn = true
+  
   -- Minimal number of screen lines to keep above and below the cursor.
   vim.o.scrolloff = 10
 
@@ -382,9 +383,12 @@ do
   -- change the command under that to load whatever the name of that colorscheme is.
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  vim.pack.add { gh 'folke/tokyonight.nvim' }
+  vim.pack.add { 
+    gh 'folke/tokyonight.nvim',
+    gh 'rebelot/kanagawa.nvim',
+  }
   ---@diagnostic disable-next-line: missing-fields
-  require('tokyonight').setup {
+  require('kanagawa').setup {
     styles = {
       comments = { italic = false }, -- Disable italics in comments
     },
@@ -393,7 +397,7 @@ do
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'kanagawa-dragon'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -435,9 +439,19 @@ do
   -- Simple and easy statusline.
   --  You could remove this setup call if you don't like it,
   --  and try some other statusline plugin
-  local statusline = require 'mini.statusline'
+  -- local statusline = require 'mini.statusline'
   -- Set `use_icons` to true if you have a Nerd Font
-  statusline.setup { use_icons = vim.g.have_nerd_font }
+  -- statusline.setup { use_icons = vim.g.have_nerd_font }
+  
+  -- Use more feature packed status line
+  vim.pack.add { gh 'nvim-lualine/lualine.nvim' }
+  local statusline = require 'lualine'
+  statusline.setup {
+    options = {
+      theme = 'auto',
+      icons_enabled = vim.g.have_nerd_font,
+    },
+  }
 
   -- You can configure sections in the statusline by overriding their
   -- default behavior. For example, here we set the section for
