@@ -383,21 +383,24 @@ do
   -- change the command under that to load whatever the name of that colorscheme is.
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  vim.pack.add { 
-    gh 'folke/tokyonight.nvim',
-    gh 'rebelot/kanagawa.nvim',
-  }
-  ---@diagnostic disable-next-line: missing-fields
-  require('kanagawa').setup {
-    styles = {
-      comments = { italic = false }, -- Disable italics in comments
-    },
-  }
+  -- NOTE: Theme set in my own additons
+  
+  -- vim.pack.add { 
+  --   gh 'folke/tokyonight.nvim',
+  --   gh 'rebelot/kanagawa.nvim',
+  -- }
+  -- ---@diagnostic disable-next-line: missing-fields
+  -- require('kanagawa').setup {
+  --   styles = {
+  --     comments = { italic = false }, -- Disable italics in comments
+  --   },
+  -- }
 
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'kanagawa-dragon'
+  
+  -- vim.cmd.colorscheme 'kanagawa-dragon'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -995,3 +998,35 @@ end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+do
+  --NOTE:  My own additons
+  
+  --Themes
+  vim.pack.add({
+    gh 'kepano/flexoki-neovim',
+  })
+  vim.cmd.colorscheme("flexoki-dark")
+  vim.api.nvim_set_hl(0, "MatchParen", {
+    fg = "#ff9e3b",
+    bold = true,
+  })
+ 
+  --Neotree file explorer
+  vim.pack.add({
+    "https://github.com/nvim-neo-tree/neo-tree.nvim",
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/MunifTanjim/nui.nvim",
+    "https://github.com/nvim-tree/nvim-web-devicons",
+  })
+  require("neo-tree").setup({
+    window={
+      width=30,
+      },
+  })
+  vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle file explorer" })
+
+  --Indent guides
+  vim.pack.add({"https://github.com/lukas-reineke/indent-blankline.nvim"})
+  require("ibl").setup({})
+end
