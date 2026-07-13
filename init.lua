@@ -1029,4 +1029,8 @@ do
   --Indent guides
   vim.pack.add({"https://github.com/lukas-reineke/indent-blankline.nvim"})
   require("ibl").setup({})
+  
+  -- Alternate bind for Esc
+  vim.keymap.set('i', 'jj', "<esc>")
 end
+
