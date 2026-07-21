@@ -1047,5 +1047,8 @@ do
   
   -- Alternate bind for Esc
   vim.keymap.set('i', 'jj', "<esc>")
+
+  -- Go to type definition
+  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, { desc = 'Go to type definition' })
 end
 
