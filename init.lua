@@ -1033,7 +1033,17 @@ do
 
   --Indent guides
   vim.pack.add({"https://github.com/lukas-reineke/indent-blankline.nvim"})
-  require("ibl").setup({})
+  require("ibl").setup({
+    indent ={
+      char = "▎",
+    }
+  })
+
+  vim.pack.add({"https://github.com/nvim-mini/mini.indentscope"})
+  require("mini.indentscope").setup({symbol = "▎"})
+  vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { 
+    fg = "#ff9e3b",
+  })
   
   -- Alternate bind for Esc
   vim.keymap.set('i', 'jj', "<esc>")
