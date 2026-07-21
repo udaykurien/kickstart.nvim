@@ -1022,7 +1022,12 @@ do
   require("neo-tree").setup({
     window={
       width=30,
+    },
+    filesystem = {
+      filtered_items = {
+        visible = true,
       },
+    },
   })
   vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle file explorer" })
 
